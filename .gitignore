@@ -1,0 +1,4 @@
+./lifetrack-react/node_modules
+./lifetrack-laravel/vendor
+./lifetrack-laravel/.env
+./lifetrack-laravel/app/storage/
