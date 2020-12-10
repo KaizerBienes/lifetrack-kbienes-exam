@@ -27,7 +27,7 @@ class StudyTrackerController extends Controller {
 
     /**
      * @OA\Get(
-     *     path="/v0/study-tracker/calculate",
+     *     path="api/v0/study-tracker/calculate",
      *     summary="Calculates the costs per month estimates",
      *     description="Calculates the costs per month estimate",
      *     tags={"Study Tracker"},
@@ -56,6 +56,7 @@ class StudyTrackerController extends Controller {
      *         in="query",
      *         description="Months to Forecast",
      *         required=true,
+     *         example="1",
      *         schema={
      *            "type"="integer"
      *         }
@@ -66,6 +67,26 @@ class StudyTrackerController extends Controller {
      *         @OA\JsonContent(
      *             example={
      *                 "data": {
+     *                     {
+     *                         "month_year": "Dec 2020",
+     *                         "studies_per_day": 1,
+     *                         "total_studies": "31.00000000",
+     *                         "cost_forecasted_in_usd": {
+     *                             "ram_cost": "0.00205716",
+     *                             "storage_cost": "0.00100000",
+     *                             "total_cost": "0.00305716"
+     *                         }
+     *                     },
+     *                     {
+     *                         "month_year": "Jan 2021",
+     *                         "studies_per_day": 1.01,
+     *                         "total_studies": "31.31000000",
+     *                         "cost_forecasted_in_usd": {
+     *                             "ram_cost": "0.00207762",
+     *                             "storage_cost": "0.00101000",
+     *                             "total_cost": "0.00308762"
+     *                         }
+     *                     }
      *                 }
      *             }
      *         )
@@ -75,9 +96,20 @@ class StudyTrackerController extends Controller {
      *         description="Invalid parameters.",
      *         @OA\JsonContent(
      *             example={
-     *                 "error": {
+     *                 {
      *                     "code": 422,
-     *                     "message": "Invalid Parameters"
+     *                     "message": "The given data was invalid.",
+     *                     "errors": {
+     *                         "spd": {
+     *                           "The Number of study per day must be at least 1."
+     *                         },
+     *                         "gpm": {
+     *                           "The Number of study growth per month (%) must be at least 0.01."
+     *                         },
+     *                         "mtf": {
+     *                           "The Months to forecast must be at least 1."
+     *                         }
+     *                     }
      *                 }
      *             }
      *         )

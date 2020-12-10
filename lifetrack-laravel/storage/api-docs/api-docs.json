@@ -9,7 +9,7 @@
         "version": "0"
     },
     "paths": {
-        "/v0/study-tracker/calculate": {
+        "api/v0/study-tracker/calculate": {
             "get": {
                 "tags": [
                     "Study Tracker"
@@ -31,7 +31,7 @@
                     {
                         "name": "gpm",
                         "in": "query",
-                        "description": "Study Growth Percentage per Month",
+                        "description": "Study Growth Percentage per Month (%)",
                         "required": true,
                         "schema": {
                             "type": "integer"
@@ -56,7 +56,28 @@
                             "application/json": {
                                 "schema": {},
                                 "example": {
-                                    "data": []
+                                    "data": [
+                                        {
+                                            "month_year": "Dec 2020",
+                                            "studies_per_day": 1,
+                                            "total_studies": "31.00000000",
+                                            "cost_forecasted_in_usd": {
+                                                "ram_cost": "0.00205716",
+                                                "storage_cost": "0.00100000",
+                                                "total_cost": "0.00305716"
+                                            }
+                                        },
+                                        {
+                                            "month_year": "Jan 2021",
+                                            "studies_per_day": 1.01,
+                                            "total_studies": "31.31000000",
+                                            "cost_forecasted_in_usd": {
+                                                "ram_cost": "0.00207762",
+                                                "storage_cost": "0.00101000",
+                                                "total_cost": "0.00308762"
+                                            }
+                                        }
+                                    ]
                                 }
                             }
                         }
@@ -66,12 +87,23 @@
                         "content": {
                             "application/json": {
                                 "schema": {},
-                                "example": {
-                                    "error": {
+                                "example": [
+                                    {
                                         "code": 422,
-                                        "message": "Invalid Parameters"
+                                        "message": "The given data was invalid.",
+                                        "errors": {
+                                            "spd": [
+                                                "The Number of study per day must be at least 1."
+                                            ],
+                                            "gpm": [
+                                                "The Number of study growth per month (%) must be at least 0.01."
+                                            ],
+                                            "mtf": [
+                                                "The Months to forecast must be at least 1."
+                                            ]
+                                        }
                                     }
-                                }
+                                ]
                             }
                         }
                     }
