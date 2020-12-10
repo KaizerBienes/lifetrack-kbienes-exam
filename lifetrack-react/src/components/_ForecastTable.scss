@@ -1,4 +1,4 @@
-$primary-color: rgb(0, 93, 171);
+$primary-color: rgb(0, 69, 126);
 $secondary-color: rgb(255, 255, 255);
 
 .ForecastTable {
@@ -22,5 +22,13 @@ $secondary-color: rgb(255, 255, 255);
 
     tr:nth-child(even) {
         background-color: #eeeeee;
+    }
+
+    .studyHeader {
+        background-color: rgb(2, 101, 182);
+    }
+
+    .costHeader {
+        background-color: rgb(39, 134, 211);
     }
 }

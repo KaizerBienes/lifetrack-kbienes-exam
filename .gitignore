@@ -1,6 +1,6 @@
 # frontend ignores
-./lifetrack-react/node_modules
-./lifetrack-react/build
+./lifetrack-react/node_modules/
+./lifetrack-react/build/
 
 # backend ignores
 ./lifetrack-laravel/vendor

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './_ChartForm.scss';
-import { Input, InputLabel, FormControl, FormHelperText, TextField } from '@material-ui/core';
+import { FormControl, TextField } from '@material-ui/core';
 
 class ChartForm extends Component {
     constructor(props) {

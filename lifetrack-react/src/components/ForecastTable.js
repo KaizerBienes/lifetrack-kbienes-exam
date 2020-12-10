@@ -17,26 +17,28 @@ class ForecastTable extends Component {
             <tr>
                 <td>{resultSetItem.month_year}</td>
                 <td>{Math.ceil(resultSetItem.studies_per_day).toLocaleString()}</td>
+                <td>{Math.ceil(resultSetItem.total_studies).toLocaleString()}</td>
+                <td>{this.formatCurrency(resultSetItem.cost_forecasted_in_usd.ram_cost)}</td>
+                <td>{this.formatCurrency(resultSetItem.cost_forecasted_in_usd.storage_cost)}</td>
                 <td>{this.formatCurrency(resultSetItem.cost_forecasted_in_usd.total_cost)}</td>
             </tr>
         );
         return (
-            <div className="ForecastTable mdc-data-table">
-                <div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Month Year</th>
-                                <th>Number of Studies</th>
-                                <th>Cost Forecasted</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {listItems}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            <table className="ForecastTable">
+                <thead>
+                    <tr>
+                        <th>Month Year</th>
+                        <th className="studyHeader">Studies per Day</th>
+                        <th className="studyHeader">Total Studies</th>
+                        <th className="costHeader">Ram Cost</th>
+                        <th className="costHeader">Storage Cost</th>
+                        <th className="costHeader">Total Cost Forecasted</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {listItems}
+                </tbody>
+            </table>
         );
     }
 }
