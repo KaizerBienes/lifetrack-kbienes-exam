@@ -1,0 +1,114 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Lifetrack Study Tracker API",
+        "contact": {
+            "name": "Kaizer Bienes",
+            "email": "kaizer.bienes@gmail.com"
+        },
+        "version": "0"
+    },
+    "paths": {
+        "api/v0/study-tracker/calculate": {
+            "get": {
+                "tags": [
+                    "Study Tracker"
+                ],
+                "summary": "Calculates the costs per month estimates",
+                "description": "Calculates the costs per month estimate",
+                "operationId": "App\\Http\\Controllers\\StudyTrackerController::calculateEstimates",
+                "parameters": [
+                    {
+                        "name": "spd",
+                        "in": "query",
+                        "description": "Current Number of Study per Day",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "1"
+                    },
+                    {
+                        "name": "gpm",
+                        "in": "query",
+                        "description": "Study Growth Percentage per Month (%)",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "1"
+                    },
+                    {
+                        "name": "mtf",
+                        "in": "query",
+                        "description": "Months to Forecast",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Fetching Calculation Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "data": [
+                                        {
+                                            "month_year": "Dec 2020",
+                                            "studies_per_day": 1,
+                                            "total_studies": "31.00000000",
+                                            "cost_forecasted_in_usd": {
+                                                "ram_cost": "0.00205716",
+                                                "storage_cost": "0.00100000",
+                                                "total_cost": "0.00305716"
+                                            }
+                                        },
+                                        {
+                                            "month_year": "Jan 2021",
+                                            "studies_per_day": 1.01,
+                                            "total_studies": "31.31000000",
+                                            "cost_forecasted_in_usd": {
+                                                "ram_cost": "0.00207762",
+                                                "storage_cost": "0.00101000",
+                                                "total_cost": "0.00308762"
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Invalid parameters.",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": [
+                                    {
+                                        "code": 422,
+                                        "message": "The given data was invalid.",
+                                        "errors": {
+                                            "spd": [
+                                                "The Number of study per day must be at least 1."
+                                            ],
+                                            "gpm": [
+                                                "The Number of study growth per month (%) must be at least 0.01."
+                                            ],
+                                            "mtf": [
+                                                "The Months to forecast must be at least 1."
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
