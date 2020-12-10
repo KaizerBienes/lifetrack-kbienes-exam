@@ -1,0 +1,82 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Lifetrack Study Tracker API",
+        "contact": {
+            "name": "Kaizer Bienes",
+            "email": "kaizer.bienes@gmail.com"
+        },
+        "version": "0"
+    },
+    "paths": {
+        "/v0/study-tracker/calculate": {
+            "get": {
+                "tags": [
+                    "Study Tracker"
+                ],
+                "summary": "Calculates the costs per month estimates",
+                "description": "Calculates the costs per month estimate",
+                "operationId": "App\\Http\\Controllers\\StudyTrackerController::calculateEstimates",
+                "parameters": [
+                    {
+                        "name": "spd",
+                        "in": "query",
+                        "description": "Current Number of Study per Day",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "1"
+                    },
+                    {
+                        "name": "gpm",
+                        "in": "query",
+                        "description": "Study Growth Percentage per Month",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "1"
+                    },
+                    {
+                        "name": "mtf",
+                        "in": "query",
+                        "description": "Months to Forecast",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Fetching Calculation Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "data": []
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Invalid parameters.",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "error": {
+                                        "code": 422,
+                                        "message": "Invalid Parameters"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

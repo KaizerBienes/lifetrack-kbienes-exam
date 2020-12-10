@@ -1,0 +1,15 @@
+.ChartForm {
+
+    .MuiFormControl-root {
+        margin: 20px;
+    }
+
+    .inputErrors {
+        color: #ad1010;
+
+        p {
+            font-size: 12px;
+            overflow: scroll;
+        }
+    }
+}
